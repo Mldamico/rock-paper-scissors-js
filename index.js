@@ -51,6 +51,8 @@ const createElementSelection = (playerSelection, computerSelection) => {
 };
 
 const game = e => {
+  console.log(e.target);
+  e.target.classList.add("animate-card");
   roundMessage.innerText = play(e.target.alt, computerPlay());
   if (userCounter === 5) {
     winningMessage.innerText = "User Wins the game";
@@ -65,3 +67,9 @@ console.log(keys);
 keys.forEach(key => {
   key.addEventListener("click", game);
 });
+
+keys.forEach(key =>
+  key.addEventListener("transitionend", e => {
+    e.target.classList.remove("animate-card");
+  })
+);
